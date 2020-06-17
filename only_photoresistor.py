@@ -1,17 +1,28 @@
+#!/usr/bin/env python3
+import PCF8591 as ADC
 import RPi.GPIO as GPIO
 import time
+
+DO = 17
 GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(False)
-LIGHT_PIN = 23
-GPIO.setup(LIGHT_PIN, GPIO.IN)
-lOld = not GPIO.input(LIGHT_PIN)
-print('Starting up the LIGHT Module (click on STOP to exit)')
-time.sleep(0.5)
-while True:
-    if GPIO.input(LIGHT_PIN) != lOld:
-        if GPIO.input(LIGHT_PIN):
-            print('\u263e')
-        else:
-            print('\u263c')
-    lOld = GPIO.input(LIGHT_PIN)
-    time.sleep(0.2)
+
+
+def setup():
+    ADC.setup(0x48)
+    GPIO.setup(DO, GPIO.IN)
+
+
+def loop():
+    status = 1
+    while True:
+        print('Value: ', ADC.read(0))
+
+        time.sleep(0.2)
+
+
+if __name__ == '__main__':
+    try:
+        setup()
+        loop()
+    except KeyboardInterrupt:
+        pass
