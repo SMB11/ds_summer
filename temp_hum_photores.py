@@ -157,8 +157,8 @@ photoresValue = ADC.read(0)
 result = read_dht11_dat()
 humidity, temperature = result
 temp = read_temp()
-print("Temperature: " + temp + "Light: "+photoresValue +
-      "humidity: %s %%,  Temperature: %s C`" % (humidity, temperature))
+print("Temperature: " + str(temp) + "Light: "+str(photoresValue) +
+      "humidity: " + str(humidity)+"  Temperature: " + str(temperature))
 
 
 # while True:
