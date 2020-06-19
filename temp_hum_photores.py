@@ -153,13 +153,21 @@ def photoresistorSetup():
 
 
 photoresistorSetup()
-while True:
-    print(read_temp())
-    time.sleep(0.5)
-    result = read_dht11_dat()
-    if result:
-        humidity, temperature = result
-        print("humidity: %s %%,  Temperature: %s C`" % (humidity, temperature))
-    time.sleep(0.5)
-    print('Value of Photoresistor: ', ADC.read(0))
-    time.sleep(1)
+photoresValue = ADC.read(0)
+result = read_dht11_dat()
+humidity, temperature = result
+temp = read_temp()
+print("Temperature: " + temp + "Light: "+photoresValue +
+      "humidity: %s %%,  Temperature: %s C`" % (humidity, temperature))
+
+
+# while True:
+#     print("Temperature: "+ str(read_temp()))
+#     time.sleep(0.5)
+#     result = read_dht11_dat()
+#     if result:
+#         humidity, temperature = result
+#         print("humidity: %s %%,  Temperature: %s C`" % (humidity, temperature))
+#     time.sleep(0.5)
+#     print('Value of Photoresistor: ', ADC.read(0))
+#     time.sleep(1)
