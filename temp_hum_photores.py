@@ -1,11 +1,12 @@
 import os
 import glob
 import time
+from time import sleep
 
 import PCF8591 as ADC  # analog to digital converter
 
 import RPi.GPIO as GPIO
-import datetime
+from datetime import datetime
 
 os.system('modprobe w1-gpio')
 os.system('modprobe w1-therm')
