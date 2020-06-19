@@ -177,7 +177,8 @@ while True:
                ","+str(humidity)+","+str(temperature)+"\n")
     file.flush()
     time.sleep(5)
-    file.close()
+
+file.close()
 
 # while True:
 #     print("Temperature: "+ str(read_temp()))
