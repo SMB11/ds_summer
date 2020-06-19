@@ -5,6 +5,7 @@ import time
 import PCF8591 as ADC  # analog to digital converter
 
 import RPi.GPIO as GPIO
+import datetime
 
 os.system('modprobe w1-gpio')
 os.system('modprobe w1-therm')
@@ -45,11 +46,13 @@ def read_temp():
     if equals_pos != -1:
         temp_string = lines[1][equals_pos+2:]
         temp_c = float(temp_string) / 1000.0
-        temp_f = temp_c * 9.0 / 5.0 + 32.0
-        return temp_c, temp_f
-
+        # temp_f = temp_c * 9.0 / 5.0 + 32.0
+        #  temp_f
+        return temp_c
 
 # Humility sensor get data
+
+
 def read_dht11_dat():
     GPIO.setup(DHTPIN, GPIO.OUT)
     GPIO.output(DHTPIN, GPIO.HIGH)
@@ -152,14 +155,28 @@ def photoresistorSetup():
   # start all
 
 
+file = open("/home/pi/data_log.csv", "a")
+
+
 photoresistorSetup()
 photoresValue = ADC.read(0)
 result = read_dht11_dat()
 humidity, temperature = result
 temp = read_temp()
-print("Temperature: " + str(temp) + "Light: "+str(photoresValue) +
-      "humidity: " + str(humidity)+"  Temperature: " + str(temperature))
+print("Temperature: " + str(temp) + " Light: "+str(photoresValue) +
+      " Humidity: " + str(humidity)+"  Temperature2: " + str(temperature))
 
+i = 0
+if os.stat("/home/pi/data_log.csv").st_size == 0:
+    file.write("Time,Temperature 1,Photoresistor Value,Humidity,Temperature 2\n")
+while True:
+    i = i+1
+    now = datetime.now()
+    file.write(str(now)+","+str(temp)+","+str(photoresValue) +
+               ","+str(humidity)+","+str(temperature)+"\n")
+    file.flush()
+    time.sleep(5)
+    file.close()
 
 # while True:
 #     print("Temperature: "+ str(read_temp()))
