@@ -181,7 +181,7 @@ while True:
     print(str(now)+","+str(read_temp())+","+str(ADC.read(0)) +
           ","+str(humidity)+","+str(temperature)+","+str(ADC.read(1))+","+str(ADC.read(2)) + "\n")
     file.flush()
-    time.sleep(5)
+    time.sleep(2)
 
 file.close()
 
