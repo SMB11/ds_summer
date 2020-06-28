@@ -18,7 +18,7 @@ def loop():
         print('Value: ', ADC.read(1))
         print('Value 2: ', ADC.read(2))
 
-        time.sleep(0.2)
+        time.sleep(2)
 
 
 if __name__ == '__main__':
