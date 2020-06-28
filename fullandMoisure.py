@@ -164,11 +164,10 @@ photoresValue = ADC.read(0)
 result = read_dht11_dat()
 humidity, temperature = result
 temp = read_temp()
-moisure1 = ADC.read(1)
-moisure2 = ADC.read(2)
+
 
 print("Temperature: " + str(temp) + " Light: "+str(photoresValue) +
-      " Humidity: " + str(humidity)+"  Temperature2: " + str(temperature)+" Moisure 1" + str(moisure1)+" Moisure 2" + str(moisure2))
+      " Humidity: " + str(humidity)+"  Temperature2: " + str(temperature)+" Moisure 1" + str(ADC.read(1))+" Moisure 2" + str(ADC.read(2)))
 
 i = 0
 if os.stat("/home/pi/data_log.csv").st_size == 0:
@@ -178,7 +177,7 @@ while True:
     i = i+1
     now = datetime.now()
     file.write(str(now)+","+str(temp)+","+str(photoresValue) +
-               ","+str(humidity)+","+str(temperature)+","+str(moisure1)+","+str(moisure2) + "\n")
+               ","+str(humidity)+","+str(temperature)+","+str(ADC.read(1))+","+str(ADC.read(2)) + "\n")
     file.flush()
     time.sleep(5)
 
