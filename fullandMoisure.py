@@ -163,8 +163,7 @@ photoresistorSetup()
 # photoresValue = ADC.read(0)
 result = read_dht11_dat()
 humidity, temperature = result
-print(result[0])
-print(result[1])
+print(read_dht11_dat())
 # temp = read_temp()
 
 
