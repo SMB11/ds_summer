@@ -160,13 +160,13 @@ file = open("/home/pi/data_log.csv", "a")
 
 
 photoresistorSetup()
-photoresValue = ADC.read(0)
+# photoresValue = ADC.read(0)
 result = read_dht11_dat()
 humidity, temperature = result
-temp = read_temp()
+# temp = read_temp()
 
 
-print("Temperature: " + str(temp) + " Light: "+str(photoresValue) +
+print("Temperature: " + str(read_temp()) + " Light: "+str(ADC.read(0)) +
       " Humidity: " + str(humidity)+"  Temperature 2: " + str(temperature)+" Moisure 1 " + str(ADC.read(1))+" Moisure 2 " + str(ADC.read(2)))
 
 i = 0
@@ -176,9 +176,9 @@ if os.stat("/home/pi/data_log.csv").st_size == 0:
 while True:
     i = i+1
     now = datetime.now()
-    file.write(str(now)+","+str(temp)+","+str(photoresValue) +
+    file.write(str(now)+","+str(read_temp())+","+str(ADC.read(0)) +
                ","+str(humidity)+","+str(temperature)+","+str(ADC.read(1))+","+str(ADC.read(2)) + "\n")
-    print(str(now)+","+str(temp)+","+str(photoresValue) +
+    print(str(now)+","+str(read_temp())+","+str(ADC.read(0)) +
           ","+str(humidity)+","+str(temperature)+","+str(ADC.read(1))+","+str(ADC.read(2)) + "\n")
     file.flush()
     time.sleep(5)
