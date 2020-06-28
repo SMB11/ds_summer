@@ -167,7 +167,7 @@ temp = read_temp()
 
 
 print("Temperature: " + str(temp) + " Light: "+str(photoresValue) +
-      " Humidity: " + str(humidity)+"  Temperature2: " + str(temperature)+" Moisure 1" + str(ADC.read(1))+" Moisure 2" + str(ADC.read(2)))
+      " Humidity: " + str(humidity)+"  Temperature 2: " + str(temperature)+" Moisure 1 " + str(ADC.read(1))+" Moisure 2 " + str(ADC.read(2)))
 
 i = 0
 if os.stat("/home/pi/data_log.csv").st_size == 0:
@@ -178,6 +178,8 @@ while True:
     now = datetime.now()
     file.write(str(now)+","+str(temp)+","+str(photoresValue) +
                ","+str(humidity)+","+str(temperature)+","+str(ADC.read(1))+","+str(ADC.read(2)) + "\n")
+    print(str(now)+","+str(temp)+","+str(photoresValue) +
+          ","+str(humidity)+","+str(temperature)+","+str(ADC.read(1))+","+str(ADC.read(2)) + "\n")
     file.flush()
     time.sleep(5)
 
