@@ -174,12 +174,10 @@ if os.stat("/home/pi/data_log.csv").st_size == 0:
     file.write(
         "Time,Temperature 1,Photoresistor Value,Humidity,Temperature 2,Plant1Moisure,Plant2Moisure\n")
 while True:
-    result1 = read_dht11_dat()
-    humidity1, temperature1 = result1
     i = i+1
     now = datetime.now()
     file.write(str(now)+","+str(read_temp())+","+str(ADC.read(0)) +
-               ","+str(humidity1)+","+str(temperature1)+","+str(ADC.read(1))+","+str(ADC.read(2)) + "\n")
+               ","+str(humidity)+","+str(temperature)+","+str(ADC.read(1))+","+str(ADC.read(2)) + "\n")
     print(str(now)+","+str(read_temp())+","+str(ADC.read(0)) +
           ","+str(humidity)+","+str(temperature)+","+str(ADC.read(1))+","+str(ADC.read(2)) + "\n")
     file.flush()
