@@ -15,7 +15,6 @@ def setup():
 def loop():
     status = 1
     while True:
-        print('Value: ', ADC.read(0))
     print('Value2: ', ADC.read(1))
 
     time.sleep(0.2)
