@@ -167,7 +167,7 @@ humiditySt, temperatureSt = resultSt
 
 
 print("Temperature: " + str(read_temp()) + " Light: "+str(ADC.read(0)) +
-      " Humidity: " + str(humidity)+"  Temperature 2: " + str(temperature)+" Moisure 1 " + str(ADC.read(1))+" Moisure 2 " + str(ADC.read(2)))
+      " Humidity: " + str(humiditySt)+"  Temperature 2: " + str(temperatureSt)+" Moisure 1 " + str(ADC.read(1))+" Moisure 2 " + str(ADC.read(2)))
 
 i = 0
 if os.stat("/home/pi/data_log.csv").st_size == 0:
