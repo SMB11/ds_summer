@@ -187,7 +187,7 @@ while True:
         temperature = temperatureSt
 
     # print(result)
-    camera.capture('./{}.jpg'.format(now))
+    camera.capture('./firstTest/{}.jpg'.format(now))
     file.write(str(now)+","+str(read_temp())+","+str(ADC.read(0)) +
                ","+str(humidity)+","+str(temperature)+","+str(ADC.read(1))+","+str(ADC.read(2)) + "\n")
     print(str(now)+","+str(read_temp())+","+str(ADC.read(0)) +
