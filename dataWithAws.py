@@ -60,12 +60,6 @@ class MyDb(object):
         self.table.put_item(
             Item={
                 'Time': Date,
-                'Temperature1': Temperature1,
-                'PhotoresistorValue': PhotoresistorValue,
-                'Humidity': Humidity,
-                'Temperature2': Temperature2,
-                'Plant1Moisure': Plant1Moisure,
-                'Plant2Moisure': Plant2Moisure
             }
         )
 
