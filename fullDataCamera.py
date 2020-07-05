@@ -158,7 +158,7 @@ def photoresistorSetup():
   # start all
 
 
-file = open("/home/pi/data_log.csv", "a")
+file = open("/home/pi/data_logSt.csv", "a")
 
 
 photoresistorSetup()
@@ -172,7 +172,7 @@ print("Temperature: " + str(read_temp()) + " Light: "+str(ADC.read(0)) +
       " Humidity: " + str(humiditySt)+"  Temperature 2: " + str(temperatureSt)+" Moisure 1 " + str(ADC.read(1))+" Moisure 2 " + str(ADC.read(2)))
 
 i = 0
-if os.stat("/home/pi/data_log.csv").st_size == 0:
+if os.stat("/home/pi/data_logSt.csv").st_size == 0:
     file.write(
         "Time,Temperature 1,Photoresistor Value,Humidity,Temperature 2,Plant1Moisure,Plant2Moisure,Environment\n")
 while True:
