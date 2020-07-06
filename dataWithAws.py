@@ -211,8 +211,6 @@ while True:
 
     file.write(str(now)+","+str(read_temp())+","+str(ADC.read(0)) +
                ","+str(humidity)+","+str(temperature)+","+str(ADC.read(1))+","+str(ADC.read(2)) + ","+"1" + "\n")
-    obj = MyDb()
-    obj.put(Date=str(now))
     print(str(now)+","+str(read_temp())+","+str(ADC.read(0)) +
           ","+str(humidity)+","+str(temperature)+","+str(ADC.read(1))+","+str(ADC.read(2)) + ","+"1" + "\n")
     file.flush()
