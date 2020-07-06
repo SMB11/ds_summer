@@ -35,36 +35,12 @@ STATE_DATA_PULL_DOWN = 5
 
 # //////////////////
 
-
-class MyDb(object):
-
-    def __init__(self, Table_Name='ds_project'):
-        self.Table_Name = Table_Name
-
-        self.db = boto3.resource('dynamodb')
-        self.table = self.db.Table(Table_Name)
-
-        self.client = boto3.client('dynamodb')
-
-    @property
-    def get(self):
-        response = self.table.get_item(
-            Key={
-                'Date': "1"
-            }
-        )
-
-        return response
-
-    def put(self, Date='', Temperature1='', PhotoresistorValue='', Humidity='', Temperature2='', Plant1Moisure='', Plant2Moisure=''):
-        self.table.put_item(
-            Item={
-                'Time': Date,
-            }
-        )
-
+dynamodb = boto3.resource('dynamodb')
+table = dynamodb.Table('ds_project')
 
 # ///////////////////////
+
+
 def read_temp_raw():
     f = open(device_file, 'r')
     lines = f.readlines()
@@ -206,7 +182,7 @@ print("Temperature: " + str(read_temp()) + " Light: "+str(ADC.read(0)) +
 i = 0
 if os.stat("/home/pi/data_log.csv").st_size == 0:
     file.write(
-        "Time,Temperature 1,Photoresistor Value,Humidity,Temperature 2,Plant1Moisure,Plant2Moisure\n")
+        "Time,Temperature 1,Photoresistor Value,Humidity,Temperature 2,Plant1Moisure,Plant2Moisure,Environment,Plant1Size,Plant2Size\n")
 while True:
     i = i+1
     now = datetime.now()
@@ -220,12 +196,25 @@ while True:
 
     # print(result)
     camera.capture('./firstTest/{}.jpg'.format(now))
+    table.put_item(
+        Item={
+            'Date': str(now),
+            'Temperature 1': read_temp(),
+            'Photoresistor Value': ADC.read(0),
+            'Humidity': humidity,
+            'Temperature 2': temperature,
+            'Plant1Moisure': ADC.read(1),
+            'Plant2Moisure': ADC.read(2),
+            'Environment': 1
+        }
+    )
+
     file.write(str(now)+","+str(read_temp())+","+str(ADC.read(0)) +
-               ","+str(humidity)+","+str(temperature)+","+str(ADC.read(1))+","+str(ADC.read(2)) + "\n")
+               ","+str(humidity)+","+str(temperature)+","+str(ADC.read(1))+","+str(ADC.read(2)) + ","+"1" + "\n")
     obj = MyDb()
     obj.put(Date=str(now))
     print(str(now)+","+str(read_temp())+","+str(ADC.read(0)) +
-          ","+str(humidity)+","+str(temperature)+","+str(ADC.read(1))+","+str(ADC.read(2)) + "\n")
+          ","+str(humidity)+","+str(temperature)+","+str(ADC.read(1))+","+str(ADC.read(2)) + ","+"1" + "\n")
     file.flush()
     time.sleep(5)
 
