@@ -199,13 +199,13 @@ while True:
     table.put_item(
         Item={
             'Date': str(now),
-            'Temperature 1': read_temp(),
-            'Photoresistor Value': ADC.read(0),
-            'Humidity': humidity,
-            'Temperature 2': temperature,
-            'Plant1Moisure': ADC.read(1),
-            'Plant2Moisure': ADC.read(2),
-            'Environment': 1
+            'Temperature 1': str(read_temp()),
+            'Photoresistor Value': str(ADC.read(0)),
+            'Humidity': str(humidity),
+            'Temperature 2': str(temperature),
+            'Plant1Moisure': str(ADC.read(1)),
+            'Plant2Moisure': str(ADC.read(2)),
+            'Environment': '1'
         }
     )
 
