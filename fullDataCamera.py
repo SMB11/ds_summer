@@ -174,7 +174,7 @@ print("Temperature: " + str(read_temp()) + " Light: "+str(ADC.read(0)) +
 i = 0
 if os.stat("/home/pi/data_logSt.csv").st_size == 0:
     file.write(
-        "Time,Temperature 1,Photoresistor Value,Humidity,Temperature 2,Plant1Moisure,Plant2Moisure,Environment\n")
+        "Time,Temperature 1,Photoresistor Value,Humidity,Temperature 2,Plant1Moisure,Plant2Moisure,Environment,Plant1Size,Plant2Size\n")
 while True:
     i = i+1
     now = datetime.now()
