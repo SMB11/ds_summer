@@ -196,18 +196,21 @@ while True:
 
     # print(result)
     camera.capture('./firstTest/{}.jpg'.format(now))
-    table.put_item(
-        Item={
-            'Date': str(now),
-            'Temperature 1': str(read_temp()),
-            'Photoresistor Value': str(ADC.read(0)),
-            'Humidity': str(humidity),
-            'Temperature 2': str(temperature),
-            'Plant1Moisure': str(ADC.read(1)),
-            'Plant2Moisure': str(ADC.read(2)),
-            'Environment': '1'
-        }
-    )
+    try:
+        table.put_item(
+            Item={
+                'Date': str(now),
+                'Temperature 1': str(read_temp()),
+                'Photoresistor Value': str(ADC.read(0)),
+                'Humidity': str(humidity),
+                'Temperature 2': str(temperature),
+                'Plant1Moisure': str(ADC.read(1)),
+                'Plant2Moisure': str(ADC.read(2)),
+                'Environment': '1'
+            }
+        )
+    except ClientError as e:
+        print(e)
 
     file.write(str(now)+","+str(read_temp())+","+str(ADC.read(0)) +
                ","+str(humidity)+","+str(temperature)+","+str(ADC.read(1))+","+str(ADC.read(2)) + ","+"1" + "\n")
