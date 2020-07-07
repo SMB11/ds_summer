@@ -209,8 +209,8 @@ while True:
                 'Environment': '1'
             }
         )
-    except ClientError as e:
-        print(e)
+    except:
+        print("Error occurred while adding to db")
 
     file.write(str(now)+","+str(read_temp())+","+str(ADC.read(0)) +
                ","+str(humidity)+","+str(temperature)+","+str(ADC.read(1))+","+str(ADC.read(2)) + ","+"1" + "\n")
